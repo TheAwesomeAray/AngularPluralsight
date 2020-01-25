@@ -8,10 +8,12 @@ import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
 import { AssetService } from './services/asset.service';
 
+import { AssetsListComponent } from './assets/assets-list.component';
+
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, HttpClientModule],
-  declarations: [ AppComponent, HelloComponent],
+  imports:      [ BrowserModule, FormsModule, HttpClientModule ],
+  declarations: [ AppComponent, HelloComponent, AssetsListComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [AssetService, mockBackendProvider]
+  providers: [ AssetService, mockBackendProvider ]
 })
 export class AppModule { }
