@@ -1,0 +1,37 @@
+<div class='card'>
+    <div class='card-header'>
+        Asset Detail
+    </div>
+    <div class='card-body' *ngIf='asset'>
+        <div class='row'>
+            <div class='col-md-4'>
+                Asset Tag Id
+            </div>
+            <div class='col-md-8'>
+                {{ asset.assetTagId }}
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-4'>
+                Asset Type
+            </div>
+            <div class='col-md-8'>
+                {{ asset.assetType }}
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-4'>
+                Description
+            </div>
+            <div class='col-md-8'>
+                {{ asset.description }}
+            </div>
+        </div>
+        <a [routerLink]="['/assets']">
+            {{ asset.description }}
+        </a>
+    </div>
+
+</div>
+
+

@@ -3,7 +3,7 @@ import { Asset } from './models/asset'
 import { AssetService } from './services/asset.service';
 
 @Component({
-  selector: 'my-app',
+  selector: 'pm-root',
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ]
 })

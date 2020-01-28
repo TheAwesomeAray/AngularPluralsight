@@ -15,6 +15,32 @@ function dateTimeReviver(key: string, value: any) {
 
 // array in local storage for assets
 let assets = JSON.parse(localStorage.getItem('assets'), dateTimeReviver) || [];
+let asset: Asset = { 
+  assetTagId: 1,
+  assetType: "Type 1",
+  assignedTo: "Andrew Ray",
+  dateAdded: new Date(),
+  description: "Shovel",
+  retired: false,
+  dateRetired: null
+};
+asset = JSON.parse(JSON.stringify(asset), dateTimeReviver); 
+assets.push(asset);
+
+let asset2: Asset = { 
+  assetTagId: 2,
+  assetType: "Type 2",
+  assignedTo: "Andrew Ray",
+  dateAdded: new Date(),
+  description: "Wheelbarrow",
+  retired: false,
+  dateRetired: null
+};
+
+asset = JSON.parse(JSON.stringify(asset2), dateTimeReviver); 
+assets.push(asset2);
+
+JSON.parse(localStorage.getItem('assets'), dateTimeReviver) || [];
 let errors = JSON.parse(localStorage.getItem('errors')) || [];
 
 // This is a http intercepter that fakes an Assets RESTful API. It intercepts http requests 
@@ -23,6 +49,7 @@ let errors = JSON.parse(localStorage.getItem('errors')) || [];
 // If you run into any issues with this interceptor, please contact e.baker@cgi.com.
 @Injectable()
 export class MockBackendInterceptor implements HttpInterceptor {
+
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const { url, method, headers, body, params } = request;
 
@@ -99,6 +126,7 @@ export class MockBackendInterceptor implements HttpInterceptor {
         }
 
         function addAsset() {
+          
             let assetIdentity = localStorage.getItem('assetIdentity') || '1';
             let assetDto = createAssetFromObject(parseBody());
 

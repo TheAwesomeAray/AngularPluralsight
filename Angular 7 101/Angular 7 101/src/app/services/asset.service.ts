@@ -10,7 +10,8 @@ import { Asset } from '../models/asset'
 @Injectable()
 export class AssetService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   public createAsset(asset : Asset) : Observable<Asset> {
     return this.http.post<Asset>(`${environment.api_url}/assets`, asset);
