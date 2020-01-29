@@ -1,10 +1,14 @@
 <div class='card'>
     <div class='card-header'>
         Asset Detail
+        <div class='float-right'>
+            <button>Edit</button>
+            <button>Retire</button>
+        </div>
     </div>
     <div class='card-body' *ngIf='asset'>
         <div class='row'>
-            <div class='col-md-4'>
+            <div class='col-md-4 font-weight-bold'>
                 Asset Tag Id
             </div>
             <div class='col-md-8'>
@@ -12,7 +16,7 @@
             </div>
         </div>
         <div class='row'>
-            <div class='col-md-4'>
+            <div class='col-md-4 font-weight-bold'>
                 Asset Type
             </div>
             <div class='col-md-8'>
@@ -20,15 +24,47 @@
             </div>
         </div>
         <div class='row'>
-            <div class='col-md-4'>
+            <div class='col-md-4 font-weight-bold'>
                 Description
             </div>
             <div class='col-md-8'>
                 {{ asset.description }}
             </div>
         </div>
+        <div class='row'>
+            <div class='col-md-4 font-weight-bold'>
+                Assigned To
+            </div>
+            <div class='col-md-8'>
+                {{ asset.assignedTo }}
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-4 font-weight-bold'>
+                Date Added
+            </div>
+            <div class='col-md-8'>
+                {{ asset.dateAdded | date }}
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-4 font-weight-bold'>
+                Retired
+            </div>
+            <div class='col-md-8'>
+                {{ asset.retired }}
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-4 font-weight-bold'>
+                Date Retired
+            </div>
+            <div class='col-md-8'>
+                {{ asset.dateRetired }}
+            </div>
+        </div>
         <a [routerLink]="['/assets']">
-            {{ asset.description }}
+           Back to Asset List
         </a>
     </div>
 

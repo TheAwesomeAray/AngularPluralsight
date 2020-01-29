@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 // used to create fake backend
 import { mockBackendProvider } from './helpers/mock-backend';
 import { AppComponent } from './app.component';
@@ -15,7 +16,9 @@ import { AssetDetailComponent } from './assets/assets-detail.component';
   imports:      [ 
     BrowserModule, 
     FormsModule, 
-    HttpClientModule, 
+    HttpClientModule,
+    NgbModule,
+    NgbModal, 
     RouterModule.forRoot([
       { path: 'assets', component: AssetsListComponent },
       { path: 'assets/:id', component: AssetDetailComponent }

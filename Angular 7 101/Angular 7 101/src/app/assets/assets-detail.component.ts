@@ -12,9 +12,9 @@ export class AssetDetailComponent {
     asset: Asset;
 
     constructor(assetService: AssetService, route: ActivatedRoute) {
-        console.log(route.snapshot.paramMap.get('id'));
+        let id = Number(route.snapshot.paramMap.get('id'));
         assetService.getAssets().subscribe({
-            next: assets => this.asset = assets[0]
+            next: assets => this.asset = assets.find(x => x.assetTagId === id)
         })
     } 
 }
