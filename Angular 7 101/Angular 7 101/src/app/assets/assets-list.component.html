@@ -1,6 +1,9 @@
 <div class='card'>
     <div class='card-header'>
-        Asset List
+        <div class="form-group">
+            Filter
+            <input type="text" class="form-control" id="filter" required [(ngModel)]="filter" name="filter">
+        </div>
         <div class='float-right'>
             <button class='btn btn-md' (click)="open(content)">Add</button>
         </div>
@@ -23,7 +26,7 @@
                     <th>Date Retired</th>
                 </thead>
                 <tbody>
-                    <tr *ngFor='let asset of assets'>
+                    <tr *ngFor='let asset of filteredAssets'>
                         <td>
                             <a [routerLink]="['/assets', asset.assetTagId]">
                                 {{ asset.assetTagId }}
@@ -41,10 +44,10 @@
         </div>
     </div>
 </div>
-<ng-template #content let-c="close" let-d="dismiss">
+<ng-template #content let-close="close" let-d="dismiss">
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
-        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <h4 class="modal-title" id="modal-basic-title">Create Asset</h4>
+        <button type="button" class="close" aria-label="Close" (click)="close()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -52,8 +55,8 @@
         <form>
             <div class="form-group">
                 <label for="description">Asset Type</label>
-                <input type="text" class="form-control" id="assetType" required
-                    [(ngModel)]="assetToCreate.assetType" name="assetType">
+                <input type="text" class="form-control" id="assetType" required [(ngModel)]="assetToCreate.assetType"
+                    name="assetType">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
@@ -62,8 +65,8 @@
             </div>
             <div class="form-group">
                 <label for="assignedTo">Assigned To</label>
-                <input type="text" class="form-control" id="assignedTo" required
-                    [(ngModel)]="assetToCreate.assignedTo" name="assignedTo">
+                <input type="text" class="form-control" id="assignedTo" required [(ngModel)]="assetToCreate.assignedTo"
+                    name="assignedTo">
             </div>
         </form>
     </div>
