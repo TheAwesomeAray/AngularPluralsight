@@ -42,13 +42,32 @@
     </div>
 </div>
 <ng-template #content let-c="close" let-d="dismiss">
-<div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-<pm-assets-modal></pm-assets-modal>
-<div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
-</div>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label for="description">Asset Type</label>
+                <input type="text" class="form-control" id="assetType" required
+                    [(ngModel)]="assetToCreate.assetType" name="assetType">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" id="assetTypeId" required
+                    [(ngModel)]="assetToCreate.description" name="description">
+            </div>
+            <div class="form-group">
+                <label for="assignedTo">Assigned To</label>
+                <input type="text" class="form-control" id="assignedTo" required
+                    [(ngModel)]="assetToCreate.assignedTo" name="assignedTo">
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark" (click)="onSubmit()">Save</button>
+    </div>
+</ng-template>

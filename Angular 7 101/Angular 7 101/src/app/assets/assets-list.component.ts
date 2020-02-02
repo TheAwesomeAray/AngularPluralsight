@@ -11,6 +11,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
  export class AssetsListComponent implements OnInit {
      assets: Asset[] = [];
      closeResult: string;
+     assetToCreate: Asset = new Asset();
 
     constructor(private assetService: AssetService, private modalService: NgbModal) {
     }
@@ -24,19 +25,31 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
         });
       }
     
-      private getDismissReason(reason: any): string {
-        if (reason === ModalDismissReasons.ESC) {
-          return 'by pressing ESC';
-        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-          return 'by clicking on a backdrop';
-        } else {
-          return  `with: ${reason}`;
-        }
+    private getDismissReason(reason: any): string {
+      if (reason === ModalDismissReasons.ESC) {
+        return 'by pressing ESC';
+      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+        return 'by clicking on a backdrop';
+      } else {
+        return  `with: ${reason}`;
       }
+    }
+
+    onSubmit() {
+      console.log(this.assetToCreate);
+      this.assetService.createAsset(this.assetToCreate).subscribe({
+        next: () => this.getAssets()
+      });
+      this.modalService.dismissAll();
+    }
 
     ngOnInit(): void {
-        this.assetService.getAssets().subscribe({
-            next: assets => this.assets = assets
-        });
+      this.getAssets();
+    }
+
+    getAssets() : void {
+      this.assetService.getAssets().subscribe({
+        next: assets => this.assets = assets
+    });
     }
  }

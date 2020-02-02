@@ -1,73 +1,84 @@
-<div class='card'>
+<div class='card' *ngIf="asset">
     <div class='card-header'>
         Asset Detail
         <div class='float-right'>
-            <button>Edit</button>
-            <button>Retire</button>
+            <button (click)="editMode(true)" *ngIf="!isEditMode">Edit</button>
+            <button (click)="saveAsset()" *ngIf="isEditMode">Save</button>
+            <button (click)="retireAsset()" *ngIf="!asset.retired">Retire</button>
         </div>
     </div>
     <div class='card-body' *ngIf='asset'>
         <div class='row'>
-            <div class='col-md-4 font-weight-bold'>
-                Asset Tag Id
+            <div class='{{ labelStyle }}'>
+                Asset Tag Id:
             </div>
             <div class='col-md-8'>
                 {{ asset.assetTagId }}
             </div>
         </div>
-        <div class='row'>
-            <div class='col-md-4 font-weight-bold'>
-                Asset Type
+        <div class='row form-group'>
+            <div class='{{ labelStyle }}'>
+                Asset Type:
             </div>
-            <div class='col-md-8'>
+            <div class='col-md-8' *ngIf="!isEditMode">
                 {{ asset.assetType }}
             </div>
-        </div>
-        <div class='row'>
-            <div class='col-md-4 font-weight-bold'>
-                Description
+            <div class='col-md-8' *ngIf="isEditMode">
+                <input type="text" class="form-control" id="assetType" required [(ngModel)]="asset.assetType"
+                    name="assetType">
             </div>
-            <div class='col-md-8'>
+        </div>
+        <div class='row form-group'>
+            <div class='{{ labelStyle }}'>
+                Description:
+            </div>
+            <div class='col-md-8' *ngIf="!isEditMode">
                 {{ asset.description }}
             </div>
-        </div>
-        <div class='row'>
-            <div class='col-md-4 font-weight-bold'>
-                Assigned To
+            <div class='col-md-8' *ngIf="isEditMode">
+                <input type="text" class="form-control" id="description" required [(ngModel)]="asset.description"
+                    name="description">
             </div>
-            <div class='col-md-8'>
+        </div>
+        <div class='row form-group'>
+            <div class='{{ labelStyle }}'>
+                Assigned To:
+            </div>
+            <div class='col-md-8' *ngIf="!isEditMode">
                 {{ asset.assignedTo }}
             </div>
+            <div class='col-md-8' *ngIf="isEditMode">
+                <input type="text" class="form-control" id="assignedTo" required [(ngModel)]="asset.assignedTo"
+                    name="assignedTo">
+            </div>
         </div>
-        <div class='row'>
-            <div class='col-md-4 font-weight-bold'>
-                Date Added
+        <div class='row form-group'>
+            <div class='{{ labelStyle }}'>
+                Date Added:
             </div>
             <div class='col-md-8'>
                 {{ asset.dateAdded | date }}
             </div>
         </div>
-        <div class='row'>
-            <div class='col-md-4 font-weight-bold'>
-                Retired
+        <div class='row form-group'>
+            <div class='{{ labelStyle }}'>
+                Retired:
             </div>
             <div class='col-md-8'>
                 {{ asset.retired }}
             </div>
         </div>
-        <div class='row'>
-            <div class='col-md-4 font-weight-bold'>
-                Date Retired
+        <div class='row form-group'>
+            <div class='{{ labelStyle }}'>
+                Date Retired:
             </div>
             <div class='col-md-8'>
-                {{ asset.dateRetired }}
+                {{ asset.dateRetired | date }}
             </div>
         </div>
-        <a [routerLink]="['/assets']">
-           Back to Asset List
-        </a>
+
     </div>
-
 </div>
-
-
+<a [routerLink]="['/assets']">
+    Back to Asset List
+</a>

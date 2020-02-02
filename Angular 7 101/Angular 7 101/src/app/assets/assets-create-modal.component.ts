@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Asset } from "@/models/asset";
 
 @Component({
     selector: 'pm-assets-modal',
@@ -6,4 +7,5 @@ import { Component } from "@angular/core";
 })
 
 export class AssetCreateModal {
+  asset: Asset;
 } 
