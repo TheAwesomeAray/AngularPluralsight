@@ -16,5 +16,5 @@ export class AssetDetailComponent {
         assetService.getAssets().subscribe({
             next: assets => this.asset = assets.find(x => x.assetTagId === id)
         })
-    } 
+    }
 }
