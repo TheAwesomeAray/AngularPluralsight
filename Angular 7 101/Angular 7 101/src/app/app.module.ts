@@ -9,9 +9,11 @@ import { mockBackendProvider } from './helpers/mock-backend';
 import { AppComponent } from './app.component';
 import { AssetService } from './services/asset.service';
 
+
 import { AssetsListComponent } from './assets/assets-list.component';
 import { AssetDetailComponent } from './assets/assets-detail.component';
-import { AssetCreateModal } from './assets/assets-create-modal.component';
+import { AssetsTableComponent } from './assets/assets-table.component';
+import { AssignedAssetsComponent } from './assets/assigned-assets.component';
 
 @NgModule({
   imports: [ 
@@ -21,16 +23,18 @@ import { AssetCreateModal } from './assets/assets-create-modal.component';
     NgbModule,
     RouterModule.forRoot([
       { path: 'assets', component: AssetsListComponent },
-      { path: 'assets/:id', component: AssetDetailComponent }
+      { path: 'assets/:id', component: AssetDetailComponent },
+      { path: 'employee/:name', component: AssignedAssetsComponent }
     ]) 
   ],
   declarations: [ 
     AppComponent, 
     AssetsListComponent, 
+    AssetsTableComponent,
     AssetDetailComponent,
-    AssetCreateModal
+    AssignedAssetsComponent
   ],
-  entryComponents: [ AssetCreateModal, AssetsListComponent ],
+  entryComponents: [ AssetsListComponent ],
   bootstrap: [ AppComponent ],
   providers: [ 
     AssetService, 

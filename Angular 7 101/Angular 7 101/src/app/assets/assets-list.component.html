@@ -9,39 +9,7 @@
         </div>
     </div>
     <div class='card-body'>
-        <div class='row'>
-            <div class='col-md-4'>
-                Filtered By:
-            </div>
-        </div>
-        <div class='table-responsive'>
-            <table class='table'>
-                <thead>
-                    <th>Asset Tag ID</th>
-                    <th>Asset Type</th>
-                    <th>Description</th>
-                    <th>Assigned To</th>
-                    <th>Date Added</th>
-                    <th>Retired</th>
-                    <th>Date Retired</th>
-                </thead>
-                <tbody>
-                    <tr *ngFor='let asset of filteredAssets'>
-                        <td>
-                            <a [routerLink]="['/assets', asset.assetTagId]">
-                                {{ asset.assetTagId }}
-                            </a>
-                        </td>
-                        <td>{{ asset.assetType }}</td>
-                        <td>{{ asset.description }}</td>
-                        <td>{{ asset.assignedTo }}</td>
-                        <td>{{ asset.dateAdded | date }}</td>
-                        <td>{{ asset.retired }}</td>
-                        <td>{{ asset.dateRetired | date }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <pm-assets-table [assets]="filteredAssets"></pm-assets-table>
     </div>
 </div>
 <ng-template #content let-close="close" let-d="dismiss">

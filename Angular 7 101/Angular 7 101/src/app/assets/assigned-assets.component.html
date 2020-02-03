@@ -1,0 +1,11 @@
+<div class='card'>
+    <div class='card-header'>
+        Assets assigned to {{ assignedTo }}
+    </div>
+    <div class='card-body'>
+        <pm-assets-table [assets]="filteredAssets"></pm-assets-table>
+    </div>
+</div>
+<a [routerLink]="['/assets']">
+    Back to Asset List
+</a>
