@@ -8,12 +8,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { mockBackendProvider } from './helpers/mock-backend';
 import { AppComponent } from './app.component';
 import { AssetService } from './services/asset.service';
-
+import { LoggingService } from './services/logging-service';
 
 import { AssetsListComponent } from './assets/assets-list.component';
 import { AssetDetailComponent } from './assets/assets-detail.component';
 import { AssetsTableComponent } from './assets/assets-table.component';
 import { AssignedAssetsComponent } from './assets/assigned-assets.component';
+
 
 @NgModule({
   imports: [ 
@@ -38,6 +39,7 @@ import { AssignedAssetsComponent } from './assets/assigned-assets.component';
   bootstrap: [ AppComponent ],
   providers: [ 
     AssetService, 
+    LoggingService,
     mockBackendProvider 
   ]
 })

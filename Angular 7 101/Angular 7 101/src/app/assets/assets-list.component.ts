@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { AssetService } from "@/services/asset.service";
 import { Asset } from "../models/asset";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { LoggingService } from "@/services/logging-service";
 
 @Component({
   selector: 'pm-assets-list',
@@ -23,7 +24,10 @@ export class AssetsListComponent {
     this.filteredAssets = this.filter ? this.performFilter(this.filter) : this.assets;
   }
 
-  constructor(private assetService: AssetService, private modalService: NgbModal) {
+  constructor(
+    private assetService: AssetService, 
+    private modalService: NgbModal,
+    private log: LoggingService) {
     this.getAssets();
   }
 
@@ -32,7 +36,7 @@ export class AssetsListComponent {
   }
 
   onSubmit() {
-    console.log(this.assetToCreate);
+    this.log.log(this.assetToCreate)
     this.assetService.createAsset(this.assetToCreate).subscribe({
       next: () => this.getAssets()
     });
@@ -41,6 +45,7 @@ export class AssetsListComponent {
   }
 
   getAssets(): void {
+    this.log.log('Retrieving assets from service');
     this.assetService.getAssets().subscribe({
       next: assets => {
         this.assets = assets;

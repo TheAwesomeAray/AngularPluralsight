@@ -16,8 +16,6 @@ export class AssignedAssetsComponent {
         this.assignedTo = route.snapshot.paramMap.get('name').toLocaleLowerCase();
         assetService.getAssets().subscribe({
             next: assets => {
-                console.log(assets.filter((asset: Asset) => asset.assignedTo.toLocaleLowerCase().indexOf(this.assignedTo) !== -1));
-                this.filteredAssets = assets;
                 this.filteredAssets = assets.filter((asset: Asset) => asset.assignedTo.toLocaleLowerCase().indexOf(this.assignedTo) !== -1)
             }
         });
