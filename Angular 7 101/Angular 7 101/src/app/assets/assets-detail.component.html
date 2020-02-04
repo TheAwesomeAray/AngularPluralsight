@@ -20,12 +20,8 @@
             <div class='{{ labelStyle }}'>
                 Asset Type:
             </div>
-            <div class='col-md-8' *ngIf="!isEditMode">
+            <div class='col-md-8'>
                 {{ asset.assetType }}
-            </div>
-            <div class='col-md-8' *ngIf="isEditMode">
-                <input type="text" class="form-control" id="assetType" required [(ngModel)]="asset.assetType"
-                    name="assetType">
             </div>
         </div>
         <div class='row form-group'>

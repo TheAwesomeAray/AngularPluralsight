@@ -1,0 +1,4 @@
+<select class="{{ class }}">
+    <option value="0">Please select an asset type</option>
+    <option *ngFor="let type of assetTypes" value={{type}}>{{ type }}</option>
+</select>

@@ -14,6 +14,7 @@ import { AssetsListComponent } from './assets/assets-list.component';
 import { AssetDetailComponent } from './assets/assets-detail.component';
 import { AssetsTableComponent } from './assets/assets-table.component';
 import { AssignedAssetsComponent } from './assets/assigned-assets.component';
+import { AssetAssetType } from './assets/assets-asset-type.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { AssignedAssetsComponent } from './assets/assigned-assets.component';
     AssetsListComponent, 
     AssetsTableComponent,
     AssetDetailComponent,
-    AssignedAssetsComponent
+    AssignedAssetsComponent,
+    AssetAssetType
   ],
   entryComponents: [ AssetsListComponent ],
   bootstrap: [ AppComponent ],
