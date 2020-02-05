@@ -3,6 +3,7 @@ import { AssetService } from "@/services/asset.service";
 import { Asset } from "../models/asset";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { LoggingService } from "@/services/logging-service";
+import { assetTypes } from './assetTypes';
 
 @Component({
   selector: 'pm-assets-list',
@@ -11,6 +12,7 @@ import { LoggingService } from "@/services/logging-service";
 
 export class AssetsListComponent {
   assets: Asset[] = [];
+  assetTypes: string[] = [];
   filteredAssets: Asset[] = [];
   assetToCreate: Asset = new Asset();
   _filter: string;
@@ -29,6 +31,7 @@ export class AssetsListComponent {
     private modalService: NgbModal,
     private log: LoggingService) {
     this.getAssets();
+    this.assetTypes = assetTypes;
   }
 
   open(content: any) {

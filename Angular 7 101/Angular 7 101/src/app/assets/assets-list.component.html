@@ -23,11 +23,14 @@
         <form>
             <div class="form-group">
                 <label for="description">Asset Type</label>
-                <pm-asset-type class="{{'form-control'}}"></pm-asset-type>
+                <select class='form-control' [(ngModel)]="assetToCreate.assetType" name="assetType">
+                    <option value="0">Please select an asset type</option>
+                    <option *ngFor="let type of assetTypes" [value]="type">{{ type }}</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <input type="text" class="form-control" id="assetTypeId" required
+                <input type="text" class="form-control" id="description" required
                     [(ngModel)]="assetToCreate.description" name="description">
             </div>
             <div class="form-group">
