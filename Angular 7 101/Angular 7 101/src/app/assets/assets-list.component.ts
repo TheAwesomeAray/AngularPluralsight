@@ -4,30 +4,45 @@ import { Asset } from "../models/asset";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { LoggingService } from "@/services/logging-service";
 import { assetTypes } from './assetTypes';
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: 'pm-assets-list',
   templateUrl: './assets-list.component.html'
 })
 
-export class AssetsListComponent {
+export class AssetsListComponent implements OnInit {
+  submitted: boolean = false;
   assets: Asset[] = [];
   assetTypes: string[] = [];
   filteredAssets: Asset[] = [];
   assetToCreate: Asset = new Asset();
   _filter: string;
+  assetForm: FormGroup;
+
+  ngOnInit(): void {
+    this.assetForm = new FormGroup({
+      'assetType': new FormControl(this.assetToCreate.assetType, Validators.required),
+      'description': new FormControl(this.assetToCreate.description, Validators.required),
+      'assignedTo': new FormControl(this.assetToCreate.assignedTo, Validators.required),
+    });
+
+    console.log(this.assetToCreate);
+  }
+
+  get f() { return this.assetForm.controls; }
 
   get filter(): string {
     return this._filter;
   }
-  
+
   set filter(value: string) {
     this._filter = value;
     this.filteredAssets = this.filter ? this.performFilter(this.filter) : this.assets;
   }
 
   constructor(
-    private assetService: AssetService, 
+    private assetService: AssetService,
     private modalService: NgbModal,
     private log: LoggingService) {
     this.getAssets();
@@ -39,10 +54,21 @@ export class AssetsListComponent {
   }
 
   onSubmit() {
+    this.submitted = true;
+
+    if (this.assetForm.invalid) {
+      return;
+    }
+
+    this.assetToCreate = new Asset(this.assetForm.value);
+
     this.log.log(this.assetToCreate)
     this.assetService.createAsset(this.assetToCreate).subscribe({
       next: () => this.getAssets()
     });
+
+    this.assetForm.reset();
+    this.submitted = false;
 
     this.modalService.dismissAll();
   }

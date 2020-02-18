@@ -20,24 +20,41 @@
         </button>
     </div>
     <div class="modal-body">
-        <form>
+        <form [formGroup]="assetForm">
             <div class="form-group">
-                <label for="description">Asset Type</label>
-                <select class='form-control' [(ngModel)]="assetToCreate.assetType" name="assetType">
+                <label for="assetType">Asset Type</label>
+                <select class='form-control' name="assetType" formControlName="assetType">
                     <option value="0">Please select an asset type</option>
                     <option *ngFor="let type of assetTypes" [value]="type">{{ type }}</option>
                 </select>
+                <div *ngIf="f.assetType.invalid && (f.assetType.dirty || f.assetType.touched || submitted)"
+                    class="alert alert-danger">
+                    <div *ngIf="f.assetType.errors.required">
+                        Asset Type is required.
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <input type="text" class="form-control" id="description" required
-                    [(ngModel)]="assetToCreate.description" name="description">
+                <input type="text" class="form-control" id="description" formControlName="description">
+                <div *ngIf="f.description.invalid && (f.description.dirty || f.description.touched || submitted)"
+                    class="alert alert-danger">
+                    <div *ngIf="f.description.errors.required">
+                        Description is required.
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="assignedTo">Assigned To</label>
-                <input type="text" class="form-control" id="assignedTo" required [(ngModel)]="assetToCreate.assignedTo"
-                    name="assignedTo">
+                <input type="text" class="form-control" formControlName="assignedTo" id="assignedTo" name="assignedTo">
+                <div *ngIf="f.assignedTo.invalid && (f.assignedTo.dirty || f.assignedTo.touched || submitted)"
+                    class="alert alert-danger">
+                    <div *ngIf="f.assignedTo.errors.required">
+                        Assigned To is required.
+                    </div>
+                </div>
             </div>
+
         </form>
     </div>
     <div class="modal-footer">

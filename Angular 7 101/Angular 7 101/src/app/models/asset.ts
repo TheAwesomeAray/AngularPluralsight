@@ -7,6 +7,7 @@ export class Asset {
     public retired : boolean;
     public dateRetired : Date;
   
-    constructor(){};
-
+    constructor(init?: Partial<Asset>){
+      Object.assign(this, init)
+    };
   }

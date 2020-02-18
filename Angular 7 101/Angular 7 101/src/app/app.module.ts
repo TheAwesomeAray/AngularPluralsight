@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -22,7 +22,9 @@ import { AssignedAssetsComponent } from './assets/assigned-assets.component';
     FormsModule, 
     HttpClientModule,
     NgbModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
+      { path: '',   redirectTo: '/assets', pathMatch: 'full' },
       { path: 'assets', component: AssetsListComponent },
       { path: 'assets/:id', component: AssetDetailComponent },
       { path: 'employee/:name', component: AssignedAssetsComponent }
